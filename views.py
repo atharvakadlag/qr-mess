@@ -1,3 +1,4 @@
+from logging import error
 from flask import redirect, url_for, session
 from app import app, oauth, db
 from models import Main
@@ -12,23 +13,24 @@ def response():
     user_data = dict(session)
     current_time = datetime.now()
     slot = get_slot(current_time)
+    name = user_data['profile']['name']
     if slot:
         # insert into db.main
         entry = Main(
-            name = user_data['profile']['name'],
+            name = name,
             slot = slot
         )
         try:
             db.session.add(entry)
             db.session.commit()
-            return render_template('response.html', user_data=user_data, slot=slot)
+            return render_template('response.html', name=name, slot=slot)
 
         except:
             db.session.rollback()
             db.session.flush()
-            return "Entry exists"
+            return render_template('error.html', error="Entry already exists!")
     else:
-        return "Sorry, mess closed. Try again later."
+        return render_template('error.html', error="Sorry, mess closed. Try again later!")
 
 
 @app.route('/')

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container">
-    <div class="d-flex flex-column align-items-center bg-light p-5 rounded-lg m-3">
-        <h2>{{ name }}</h2>
-        <h1>{{ slot }}</h1>
+    <div class="d-flex flex-column align-items-center alert alert-danger p-5 rounded-lg m-3">
+        <div>
+            <h2>Error:</h2>
+            <h4>{{ error }}</h4>
+        </div>
         <span class="pt-5"></span>
         <a class="btn btn-outline-info" href="{{ url_for('logout') }}">Logout</a>
     </div>
