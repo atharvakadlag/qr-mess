@@ -18,24 +18,45 @@ def entries():
 @login_required
 def response():
     user_data = dict(session)
-    current_time = datetime.now()
-    slot = get_slot(current_time)
-    name = user_data['profile']['name']
-    if slot:
+
+    entry = {
+        'name' : user_data['profile']['name'],
+        'current_time' : datetime.now(),
+        'date' : datetime.now().date(),
+        'slot' : get_slot(datetime.now())
+    }
+    
+    if entry['slot']:
         # insert into db.main
-        entry = Main(
-            name = name,
-            slot = slot
+        object = Main(
+            name = entry['name'],
+            slot = entry['slot'],
+            current_time = entry['current_time'],
+            date = entry['date']
         )
         try:
-            db.session.add(entry)
+            db.session.add(object)
             db.session.commit()
-            return render_template('response.html', name=name, slot=slot)
+            return render_template('response.html', object=object)
 
         except exc.IntegrityError:
             db.session.rollback()
             db.session.flush()
-            return render_template('error.html', error="Entry already exists!")
+
+            try:
+                existing = Main.query.filter_by(
+                    name=entry['name'], 
+                    slot=entry['slot'],
+                    date=entry['date']
+                ).first()
+                return render_template('response.html', object=existing)
+
+            except Exception as e:
+                print(e)
+                db.session.rollback()
+                db.session.flush()
+                return render_template('error.html', error="Something went terribly wrong!")
+
         except Exception as e:
             print(e)
             return render_template('error.html', error="Something went wrong!")

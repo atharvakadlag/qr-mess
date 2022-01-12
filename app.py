@@ -11,9 +11,6 @@ load_dotenv()
 # App config
 app = Flask(__name__)
 
-db.init_app(app)
-migrate = Migrate(app, db)
-
 # Session config
 app.secret_key = os.getenv("SECRET_KEY")
 app.config['SESSION_COOKIE_NAME'] = 'google-login-session'
@@ -27,6 +24,8 @@ if uri and uri.startswith("postgres://"):
 app.config['SQLALCHEMY_DATABASE_URI'] = uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db.init_app(app)
+migrate = Migrate(app, db)
 
 # oAuth Setup
 oauth = OAuth(app)

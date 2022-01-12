@@ -5,7 +5,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Name</th>
                     <th scope="col">Slot</th>
                 </tr>
@@ -13,7 +13,7 @@
             <tbody>
                 {% for entry in entries %}
                 <tr>
-                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.current_time.strftime("%d/%m%/%Y %H:%M") }}</td>
                     <td>{{ entry.name }}</td>
                     <td>{{ entry.slot }}</td>
                 </tr>
