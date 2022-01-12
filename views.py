@@ -8,6 +8,12 @@ from sqlalchemy import exc
 
 from flask.templating import render_template
 
+@app.route('/entries')
+def entries():
+    # get all the entries from the database
+    entries = Main.query.all()
+    return render_template('entries.html', entries=entries)
+
 @app.route('/response')
 @login_required
 def response():

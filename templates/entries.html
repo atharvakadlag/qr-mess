@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <div class="d-flex flex-column align-items-center alert alert-danger p-5 rounded-lg m-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Slot</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td>{{ entry.slot }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
