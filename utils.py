@@ -38,5 +38,5 @@ def get_slot(check_time = None):
         if check_time >= times['start'] and check_time <= times['end']:
             return slot
 
-    return "breakfast"
+    return None
 
