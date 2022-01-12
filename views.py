@@ -12,11 +12,6 @@ from flask.templating import render_template
 def entries():
     # get all the entries from the database
     entries = Main.query.all()
-    print(Main.query.count())
-    for entry in entries:
-        print(entry.name)
-        print(entry.slot)
-        print(entry.date)
     return render_template('entries.html', entries=entries)
 
 @app.route('/response')
