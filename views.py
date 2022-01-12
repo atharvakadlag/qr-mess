@@ -4,6 +4,7 @@ from app import app, oauth, db
 from models import Main
 from utils import get_slot, login_required
 from datetime import datetime
+from sqlalchemy import exc
 
 from flask.templating import render_template
 
@@ -25,10 +26,13 @@ def response():
             db.session.commit()
             return render_template('response.html', name=name, slot=slot)
 
-        except:
+        except exc.IntegrityError:
             db.session.rollback()
             db.session.flush()
             return render_template('error.html', error="Entry already exists!")
+        except Exception as e:
+            print(e)
+            return render_template('error.html', error="Something went wrong!")
     else:
         return render_template('error.html', error="Sorry, mess closed. Try again later!")
 
