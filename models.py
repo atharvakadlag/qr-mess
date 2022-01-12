@@ -9,7 +9,8 @@ class Main(db.Model):
     """
     __tablename__ = 'main'
 
-    date = db.Column(db.DateTime, primary_key=True, default=datetime.now().date())
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    date = db.Column(db.DateTime, default=datetime.now().date())
     name = db.Column(db.String(256), index=True)
     slot = db.Column(db.String(32), index=True)
 
