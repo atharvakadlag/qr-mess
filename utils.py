@@ -17,6 +17,9 @@ def get_slot(check_time = None):
     if check_time is None:
         check_time = datetime.now()
 
+    check_time = check_time.strftime('%H:%M')
+    check_time = datetime.strptime(check_time, '%H:%M')
+
     slots = {
         'breakfast': {
             'start': datetime.strptime('7', '%H'),
@@ -38,5 +41,5 @@ def get_slot(check_time = None):
         if check_time >= times['start'] and check_time <= times['end']:
             return slot
 
-    return "breakfast"
+    return None
 
