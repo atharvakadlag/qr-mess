@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from authlib.integrations.flask_client import OAuth
-from datetime import timedelta
+from datetime import datetime, timedelta
 from flask_migrate import Migrate
 from models import db, Main
 from dotenv import load_dotenv
@@ -42,5 +42,8 @@ google = oauth.register(
     userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
     client_kwargs={'scope': 'openid email profile'},
 )
+
+# print current time
+print(datetime.now())
 
 from views import login
