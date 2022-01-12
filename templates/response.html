@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <h3>
+        Name: {{ user_data.profile.name }}
+        Slot: {{ slot }}
+    </h3>
+    <h4><a href="{{ url_for('logout') }}">Logout</a></h4>
+</div>
+{% endblock %}

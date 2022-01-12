@@ -8,6 +8,10 @@ flask = "*"
 requests = "*"
 authlib = "*"
 python-dotenv = "*"
+psycopg2 = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-script = "*"
 
 [dev-packages]
 
