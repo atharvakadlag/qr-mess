@@ -3,8 +3,8 @@
 <div class="container">
     <div class="d-flex flex-column align-items-center alert alert-success p-5 rounded-lg m-3">
         <h3>{{ object.name }}</h3>
-        <h1>{{ object.slot }}</h1>
-        <h2>{{ object.current_time.strftime("%d/%m%/%Y %H:%M") }}</h2>
+        <h1>{{ object.slot.upper() }}</h1>
+        <h2>{{ object.current_time.strftime("%d/%m/%Y %H:%M") }}</h2>
         <span class="pt-5"></span>
         <a class="btn btn-outline-info" href="{{ url_for('logout') }}">Logout</a>
     </div>
