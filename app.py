@@ -43,6 +43,7 @@ google = oauth.register(
 )
 
 # print current time
-print(datetime.now())
+# print(datetime.now())
+FLOOR=os.getenv('FLOOR')
 
 from views import login

@@ -1,12 +1,21 @@
 from logging import error
 from flask import redirect, url_for, session
-from app import app, oauth, db
+from app import app, oauth, db, FLOOR
 from models import Main
 from utils import get_slot, login_required
 from datetime import datetime
 from sqlalchemy import exc
 
 from flask.templating import render_template
+
+@app.route('/test')
+def test():
+    object = {
+        'name': 'TESTUSER',
+        'slot': 'TESTSLOT',
+        'current_time': '2022-01-12 22:58:59.91495'
+    }
+    return render_template('response.html', object=object, FLOOR=FLOOR)
 
 @app.route('/entries')
 def entries():
