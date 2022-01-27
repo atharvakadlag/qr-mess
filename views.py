@@ -46,7 +46,7 @@ def response():
         try:
             db.session.add(object)
             db.session.commit()
-            return render_template('response.html', object=object)
+            return render_template('response.html', object=object, FLOOR=FLOOR)
 
         except exc.IntegrityError:
             db.session.rollback()
